@@ -1,0 +1,41 @@
+# Render Blueprint for the Boostmm Node.js app.
+# Persistent Disk is required: SQLite stores customer balances and orders.
+services:
+  - type: web
+    name: boostmm
+    runtime: docker
+    plan: starter
+    region: singapore
+    dockerfilePath: ./Dockerfile
+    dockerContext: ./
+    healthCheckPath: /healthz
+    autoDeploy: false
+    disk:
+      name: boostmm-data
+      mountPath: /data
+      sizeGB: 1
+    envVars:
+      - key: PORT
+        value: "3000"
+      - key: HOST
+        value: 0.0.0.0
+      - key: DB_PATH
+        value: /data/shop.db
+      - key: COOKIE_SECURE
+        value: "true"
+      - key: TRUST_PROXY
+        value: "true"
+      - key: OWNER_EMAIL
+        sync: false
+      - key: OWNER_USERNAME
+        value: owner
+      - key: OWNER_PASSWORD
+        sync: false
+      - key: UPSTREAM_URL
+        value: https://auraburma.com/api/v2
+      - key: UPSTREAM_API_KEY
+        sync: false
+      - key: SERVICES_SYNC_SEC
+        value: "120"
+      - key: SYNC_INTERVAL_SEC
+        value: "60"

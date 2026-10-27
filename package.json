@@ -1,0 +1,13 @@
+{
+  "name": "smm-reseller",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Reseller storefront for a panel that exposes the standard SMM v2 API. Zero npm dependencies.",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node test/e2e.js"
+  },
+  "engines": {
+    "node": ">=22.13"
+  }
+}
